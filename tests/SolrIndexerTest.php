@@ -60,4 +60,26 @@ class SolrIndexerTest extends TestCase
         ModelIndexer::forModels($documents, $config_mock)->perform();
     }
 
+    public function testBufferSizeCanBeAdjusted()
+    {
+        $indexer = ModelIndexer::forModels([new IndexableMock], new SearchConfigMock);
+
+        $this->assertEquals(100, $indexer->getBufferSize());
+
+        $indexer->setBufferSize(1000);
+
+        $this->assertEquals(1000, $indexer->getBufferSize());
+    }
+
+    public function testCommitWithinCanBeAdjusted()
+    {
+        $indexer = ModelIndexer::forModels([new IndexableMock], new SearchConfigMock);
+
+        $this->assertEquals(10000, $indexer->getCommitWithin());
+
+        $indexer->setCommitWithin(5000);
+
+        $this->assertEquals(5000, $indexer->getCommitWithin());
+    }
+
 }

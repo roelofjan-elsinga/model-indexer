@@ -141,6 +141,16 @@ class ModelIndexer
     }
 
     /**
+     * Get the buffer size
+     *
+     * @return int
+     */
+    public function getBufferSize(): int
+    {
+        return $this->buffer_size;
+    }
+
+    /**
      * Set the commit within value
      *
      * @param int $commit_within
@@ -150,5 +160,15 @@ class ModelIndexer
     {
         $this->commit_within = $commit_within;
         return $this;
+    }
+
+    /**
+     * Get the commit within value
+     *
+     * @return int
+     */
+    public function getCommitWithin(): int
+    {
+        return $this->commit_within;
     }
 }
