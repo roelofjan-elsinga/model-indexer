@@ -2,12 +2,14 @@
 
 namespace Tubber\Indexer\Contracts;
 
+use Solarium\QueryType\Update\Query\Document\Document;
+
 interface IndexableInterface
 {
     /**
      * Get an array of documents that need to be indexed for this object
      *
-     * @return array
+     * @return array|Document[]
      */
     public function indexingDocuments(): array;
 

@@ -2,15 +2,17 @@
 
 namespace Tubber\Indexer\Contracts;
 
+use Solarium\Client;
+
 interface SolrConfigInterface
 {
 
     /**
      * Get the client for this Solr interaction
      *
-     * @return \Solarium\Client
+     * @return Client
      */
-    public function getClient(): \Solarium\Client;
+    public function getClient(): Client;
 
     /**
      * Reload the core that's provided in $this->getClient

@@ -14,10 +14,18 @@
       "email": "roelofjanelsinga@gmail.com"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "Tubber\\Indexer\\": "src/"
+      "Tubber\\Indexer\\": "src/",
+      "Tests\\": "tests/"
     }
+  },
+  "require-dev": {
+    "spatie/phpunit-watcher": "dev-master",
+    "phpunit/phpunit": "^8.3@dev"
+  },
+  "require": {
+    "solarium/solarium": "^5.0"
   }
 }

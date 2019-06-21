@@ -1,0 +1,63 @@
+<?php
+
+namespace Tests;
+
+use PHPUnit\Framework\TestCase;
+use Solarium\Client;
+use Solarium\Core\Client\Endpoint;
+use Solarium\Plugin\BufferedAdd\BufferedAdd;
+use Tests\Mocks\EmptyConfigMock;
+use Tests\Mocks\IndexableMock;
+use Tests\Mocks\SearchConfigMock;
+use Tests\Mocks\UnIndexableMock;
+use Tubber\Indexer\Contracts\SolrConfigInterface;
+use Tubber\Indexer\ModelIndexer;
+use Tubber\Indexer\Exceptions\NoCoreFoundException;
+
+class SolrIndexerTest extends TestCase
+{
+
+    public function testExceptionIsThrownWhenIndexingDocumentsDoNotContainDocuments()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        ModelIndexer::forModels([new UnIndexableMock], new SearchConfigMock)->perform();
+    }
+
+    public function testExceptionIsThrownWhenConfigurationHasEmptyCore()
+    {
+        $this->expectException(NoCoreFoundException::class);
+
+        ModelIndexer::forModels([new IndexableMock], new EmptyConfigMock)->perform();
+    }
+
+    public function testIndexingIsSuccessful()
+    {
+        $documents = [new IndexableMock];
+
+        // Mock the buffer
+        $buffer = $this->createMock(BufferedAdd::class);
+        $buffer->expects($this->once())
+            ->method('addDocuments')
+            ->with($documents[0]->indexingDocuments());
+
+        $buffer->expects($this->once())
+            ->method('flush');
+
+        // Mock the endpoint
+        $endpoint = new Endpoint();
+        $endpoint->setCore('search');
+
+        // Mock the Solr client
+        $client = $this->createMock(Client::class);
+        $client->method('getPlugin')->with('bufferedadd')->willReturnReference($buffer);
+        $client->method('getEndpoint')->willReturnReference($endpoint);
+
+        // Mock the config
+        $config_mock = $this->createMock(SolrConfigInterface::class);
+        $config_mock->method('getClient')->willReturnReference($client);
+
+        ModelIndexer::forModels($documents, $config_mock)->perform();
+    }
+
+}
