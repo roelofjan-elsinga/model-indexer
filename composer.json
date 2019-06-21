@@ -1,0 +1,23 @@
+{
+  "name": "tubber/model-indexer",
+  "description": "This package makes it simple to index large amounts of data to Solr.",
+  "version": "0.1",
+  "keywords": [
+    "solr",
+    "indexing",
+    "batching"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Roelof Jan Elsinga",
+      "email": "roelofjanelsinga@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Tubber\\Indexer\\": "src/"
+    }
+  }
+}
