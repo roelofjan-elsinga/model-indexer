@@ -105,6 +105,8 @@ ModelIndexer::forModels($documents, new SearchConfig)->perform();
 
 ## Available methods
 
+To start using the ModelIndexer class, you have to call ``forModels()``. 
+
 ```php
 /**
  * Set the collection of models that need to be indexed
@@ -116,6 +118,29 @@ ModelIndexer::forModels($documents, new SearchConfig)->perform();
  */
 public static function forModels(array $models, SolrConfigInterface $config): ModelIndexer;
 ```
+
+You can customize the buffer size and the commit within value:
+
+```php
+public function setBufferSize(int $buffer_size = 100): ModelIndexer;
+```
+
+and
+
+```php
+public function setCommitWithin(int $commit_within = 10000): ModelIndexer;
+```
+
+These methods are fluent setters, so you can chain them:
+
+```php
+ModelIndexer::forModels($models, new SearchConfig)
+    ->setBufferSize(1500)
+    ->setCommitWithin(5000)
+    ->perform();
+```
+
+You can index the documents by calling the ``perform()`` method.
 
 ```php
 /**

@@ -20,6 +20,12 @@ class ModelIndexer
     /**@var BufferedAdd*/
     private $buffer;
 
+    /**@var int*/
+    private $buffer_size;
+
+    /**@var int*/
+    private $commit_within;
+
     /**
      * ModelIndexer constructor.
      *
@@ -36,6 +42,10 @@ class ModelIndexer
         $this->assertConfigHasCore();
 
         $this->buffer = $this->createBuffer();
+
+        $this->buffer_size = 100;
+
+        $this->commit_within = 10000;
     }
 
     /**
@@ -58,7 +68,7 @@ class ModelIndexer
      */
     public function perform(): void
     {
-        $this->buffer->setBufferSize(2500);
+        $this->buffer->setBufferSize($this->buffer_size);
 
         foreach ($this->models as $model) {
 
@@ -72,7 +82,7 @@ class ModelIndexer
 
         }
 
-        $this->buffer->flush(true, 10000);
+        $this->buffer->flush(true, $this->commit_within);
 
         $this->config->reloadCollection();
     }
@@ -116,5 +126,29 @@ class ModelIndexer
             }
 
         }
+    }
+
+    /**
+     * Set the buffer size
+     *
+     * @param int $buffer_size
+     * @return ModelIndexer
+     */
+    public function setBufferSize(int $buffer_size = 100): ModelIndexer
+    {
+        $this->buffer_size = $buffer_size;
+        return $this;
+    }
+
+    /**
+     * Set the commit within value
+     *
+     * @param int $commit_within
+     * @return ModelIndexer
+     */
+    public function setCommitWithin(int $commit_within = 10000): ModelIndexer
+    {
+        $this->commit_within = $commit_within;
+        return $this;
     }
 }
