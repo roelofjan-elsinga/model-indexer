@@ -12,6 +12,8 @@ composer require tubber/model-indexer
 
 ## Usage
 
+#### Indexing documents
+
 To be able to index any documents, you first need a class that implements the ``IndexableInterface``:
 
 ```php
@@ -47,6 +49,17 @@ class IndexableModel implements \Tubber\Indexer\Contracts\IndexableInterface
     public function markAsIndexed(): void
     {
         return; // Perform some kind of action to indicate this object has been indexed
+    }
+    
+    /**
+     * Get the query to delete this object from the given core
+     *
+     * @param string $search_core
+     * @return string
+     */
+    public function getDeleteQueryFor(string $search_core): string
+    {
+        return "id: 1";
     }
 }
 ```
@@ -102,6 +115,21 @@ $documents = [
 
 ModelIndexer::forModels($documents, new SearchConfig)->perform();
 ```
+
+#### Removing documents
+
+You can remove documents by using the ``ModelRemover`` class. 
+The invocation is identical to ``ModelIndexer``:
+
+```php
+use Tubber\Indexer\ModelRemover;
+
+ModelRemover::forModels($documents, new SearchConfig)->perform();
+```
+
+You need to specify the delete query in the ``getDeleteQueryFor`` method 
+on your classes that implement ``IndexableInterface``. The search core name 
+is passed to the method, in case you're indexing that class into multiple cores.
 
 ## Available methods
 

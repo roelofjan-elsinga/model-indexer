@@ -2,7 +2,7 @@
 
 namespace Tests\Mocks;
 
-use Solarium\QueryType\Update\Query\Document\Document;
+use Solarium\QueryType\Update\Query\Document;
 use Tubber\Indexer\Contracts\IndexableInterface;
 
 class UnIndexableMock implements IndexableInterface
@@ -37,5 +37,16 @@ class UnIndexableMock implements IndexableInterface
     public function markAsIndexed(): void
     {
         // TODO: Implement markAsIndexed() method.
+    }
+
+    /**
+     * Get the query to delete this object from the given core
+     *
+     * @param string $search_core
+     * @return string
+     */
+    public function getDeleteQueryFor(string $search_core): string
+    {
+        return "id: 1";
     }
 }

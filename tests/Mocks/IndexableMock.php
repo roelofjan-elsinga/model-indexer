@@ -35,4 +35,15 @@ class IndexableMock implements \Tubber\Indexer\Contracts\IndexableInterface
     {
         return; // Perform some kind of action to indicate this object has been indexed
     }
+
+    /**
+     * Get the query to delete this object from the given core
+     *
+     * @param string $search_core
+     * @return string
+     */
+    public function getDeleteQueryFor(string $search_core): string
+    {
+        return "id: 1";
+    }
 }

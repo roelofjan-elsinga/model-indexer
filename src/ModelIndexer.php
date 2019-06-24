@@ -51,7 +51,7 @@ class ModelIndexer
     /**
      * Set the collection of models that need to be indexed
      *
-     * @param array $models
+     * @param array|IndexableInterface[] $models
      * @param SolrConfigInterface $config
      * @return ModelIndexer
      * @throws NoCoreFoundException

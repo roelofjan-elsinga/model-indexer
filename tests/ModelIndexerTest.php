@@ -14,7 +14,7 @@ use Tubber\Indexer\Contracts\SolrConfigInterface;
 use Tubber\Indexer\ModelIndexer;
 use Tubber\Indexer\Exceptions\NoCoreFoundException;
 
-class SolrIndexerTest extends TestCase
+class ModelIndexerTest extends TestCase
 {
 
     public function testExceptionIsThrownWhenIndexingDocumentsDoNotContainDocuments()
@@ -37,12 +37,13 @@ class SolrIndexerTest extends TestCase
 
         // Mock the buffer
         $buffer = $this->createMock(BufferedAdd::class);
-        $buffer->expects($this->once())
+
+        $buffer
+            ->expects($this->once())
             ->method('addDocuments')
             ->with($documents[0]->indexingDocuments());
 
-        $buffer->expects($this->once())
-            ->method('flush');
+        $buffer->expects($this->once())->method('flush');
 
         // Mock the endpoint
         $endpoint = new Endpoint();

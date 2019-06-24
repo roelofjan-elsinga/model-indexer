@@ -19,4 +19,12 @@ interface IndexableInterface
      * @return void
      */
     public function markAsIndexed(): void;
+
+    /**
+     * Get the query to delete this object from the given core
+     *
+     * @param string $search_core
+     * @return string
+     */
+    public function getDeleteQueryFor(string $search_core): string;
 }
