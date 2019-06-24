@@ -2,7 +2,7 @@
 
 namespace Tubber\Indexer\Contracts;
 
-use Solarium\QueryType\Update\Query\Document\Document;
+use Solarium\QueryType\Update\Query\Document;
 
 interface IndexableInterface
 {
