@@ -1,3 +1,5 @@
+<p align="center"><img src="https://s3-eu-west-1.amazonaws.com/livetubbber/images/site/OogmerkTubbber.png"></p>
+
 <p align="center">
 <a href="https://travis-ci.com/roelofjan-elsinga/model-indexer"><img src="https://travis-ci.com/roelofjan-elsinga/model-indexer.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/tubber/model-indexer"><img src="https://poser.pugx.org/tubber/model-indexer/downloads" alt="Total Downloads"></a>
