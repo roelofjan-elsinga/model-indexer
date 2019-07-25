@@ -1,7 +1,6 @@
 {
   "name": "tubber/model-indexer",
   "description": "This package makes it simple to index large amounts of data to Solr.",
-  "version": "0.4.0",
   "keywords": [
     "solr",
     "indexing",
