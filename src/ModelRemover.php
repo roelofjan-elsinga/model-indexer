@@ -54,7 +54,6 @@ class ModelRemover
         $updater = $this->config->getClient()->createUpdate();
 
         foreach ($this->models as $model) {
-
             $updater->addDeleteQuery(
 
                 $model->getDeleteQueryFor(
@@ -64,7 +63,6 @@ class ModelRemover
                 )
 
             );
-
         }
 
         $this->config->getClient()->update($updater);
@@ -79,9 +77,8 @@ class ModelRemover
      */
     private function assertConfigHasCore(): void
     {
-        if(is_null($this->config->getClient()->getEndpoint()->getCore())) {
+        if (is_null($this->config->getClient()->getEndpoint()->getCore())) {
             throw new NoCoreFoundException;
         }
     }
-
 }

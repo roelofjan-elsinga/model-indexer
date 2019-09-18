@@ -14,7 +14,6 @@ use Tubber\Indexer\ModelRemover;
 
 class ModelRemoverTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testExceptionIsThrownWhenConfigurationHasEmptyCore()
     {
         $this->expectException(NoCoreFoundException::class);
@@ -47,5 +46,4 @@ class ModelRemoverTest extends \PHPUnit\Framework\TestCase
 
         ModelRemover::forModels($documents, $config_mock)->perform();
     }
-
 }

@@ -8,7 +8,6 @@ use Tests\Mocks\IndexableMock;
 
 class IndexableTest extends TestCase
 {
-
     public function testIndexableObjectContainsDocuments()
     {
         $mock = new IndexableMock();
@@ -17,5 +16,4 @@ class IndexableTest extends TestCase
 
         $this->assertEquals(get_class($documents[0]), Document::class);
     }
-
 }

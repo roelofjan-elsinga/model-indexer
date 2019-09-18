@@ -8,7 +8,6 @@ use Tests\Mocks\SearchConfigMock;
 
 class ConfigurationTest extends TestCase
 {
-
     public function testAnEmptyConfigHasNoCore()
     {
         $mock = new EmptyConfigMock();
@@ -26,5 +25,4 @@ class ConfigurationTest extends TestCase
 
         $this->assertSame('search', $client->getEndpoint('localhost')->getCore());
     }
-
 }

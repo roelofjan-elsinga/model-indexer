@@ -16,7 +16,6 @@ use Tubber\Indexer\Exceptions\NoCoreFoundException;
 
 class ModelIndexerTest extends TestCase
 {
-
     public function testExceptionIsThrownWhenIndexingDocumentsDoNotContainDocuments()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -82,5 +81,4 @@ class ModelIndexerTest extends TestCase
 
         $this->assertEquals(5000, $indexer->getCommitWithin());
     }
-
 }

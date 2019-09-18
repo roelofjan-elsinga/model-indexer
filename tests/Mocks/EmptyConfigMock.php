@@ -2,7 +2,6 @@
 
 namespace Tests\Mocks;
 
-
 use Solarium\Client;
 use Tubber\Indexer\Contracts\SolrConfigInterface;
 

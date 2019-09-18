@@ -71,7 +71,6 @@ class ModelIndexer
         $this->buffer->setBufferSize($this->buffer_size);
 
         foreach ($this->models as $model) {
-
             $this->assertDocumentsAreValid(
                 $documents = $model->indexingDocuments()
             );
@@ -79,7 +78,6 @@ class ModelIndexer
             $this->buffer->addDocuments($documents);
 
             $model->markAsIndexed();
-
         }
 
         $this->buffer->flush(true, $this->commit_within);
@@ -104,7 +102,7 @@ class ModelIndexer
      */
     private function assertConfigHasCore(): void
     {
-        if(is_null($this->config->getClient()->getEndpoint('localhost')->getCore())) {
+        if (is_null($this->config->getClient()->getEndpoint('localhost')->getCore())) {
             throw new NoCoreFoundException;
         }
     }
@@ -117,14 +115,12 @@ class ModelIndexer
      */
     private function assertDocumentsAreValid(array $documents): void
     {
-        foreach($documents as $document) {
-
-            if(! $document instanceof Document) {
+        foreach ($documents as $document) {
+            if (! $document instanceof Document) {
                 throw new \InvalidArgumentException(
                     "One or more indexing documents aren't of type: Solarium\QueryType\Update\Query\Document"
                 );
             }
-
         }
     }
 
