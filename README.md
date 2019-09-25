@@ -2,11 +2,12 @@
 
 # Model indexer (Apache Solr)
 
-<a href="https://travis-ci.com/roelofjan-elsinga/model-indexer"><img src="https://travis-ci.com/roelofjan-elsinga/model-indexer.svg" alt="Build Status"></a>
-<img src="https://github.styleci.io/repos/193043388/shield" alt="StyleCI Status">
-<a href="https://packagist.org/packages/tubber/model-indexer"><img src="https://poser.pugx.org/tubber/model-indexer/downloads" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/tubber/model-indexer"><img src="https://poser.pugx.org/tubber/model-indexer/v/stable" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/tubber/model-indexer"><img src="https://poser.pugx.org/tubber/model-indexer/license" alt="License"></a>
+[![Build status](https://travis-ci.com/roelofjan-elsinga/model-indexer.svg)](https://travis-ci.com/roelofjan-elsinga/model-indexer)
+[![StyleCI Status](https://github.styleci.io/repos/193043388/shield)](https://github.styleci.io/repos/193043388)
+[![Code coverage](https://codecov.io/gh/roelofjan-elsinga/model-indexer/branch/master/graph/badge.svg)](https://codecov.io/gh/roelofjan-elsinga/model-indexer)
+[![Total Downloads](https://poser.pugx.org/tubber/model-indexer/downloads)](https://packagist.org/packages/tubber/model-indexer)
+[![Latest Stable Version](https://poser.pugx.org/tubber/model-indexer/v/stable)](https://packagist.org/packages/tubber/model-indexer)
+[![License](https://poser.pugx.org/tubber/model-indexer/license)](https://packagist.org/packages/tubber/model-indexer)
 
 This package makes it simple to index large amounts of data to Solr.
 
