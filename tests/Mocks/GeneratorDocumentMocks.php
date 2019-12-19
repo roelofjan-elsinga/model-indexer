@@ -1,32 +1,30 @@
 <?php
 
+
 namespace Tests\Mocks;
 
 use Solarium\QueryType\Update\Query\Document;
 use Tubber\Indexer\Contracts\IndexableInterface;
 
-class UnIndexableMock implements IndexableInterface
+class GeneratorDocumentMocks implements IndexableInterface
 {
 
     /**
      * Get an array of documents that need to be indexed for this object
      *
-     * @return array|Document[]
+     * @return \Generator
      */
     public function indexingDocuments()
     {
-        // This returns an array, thus satisfying the return type of the interface, but they're not Documents
+        yield new Document([
+            'id' => 1,
+            'name' => 'indexing document'
+        ]);
 
-        return [
-            [
-                'id' => 1,
-                'name' => 'indexing document'
-            ],
-            [
-                'id' => 2,
-                'name' => 'updating document'
-            ],
-        ];
+        yield new Document([
+            'id' => 2,
+            'name' => 'updating document'
+        ]);
     }
 
     /**
@@ -36,7 +34,7 @@ class UnIndexableMock implements IndexableInterface
      */
     public function markAsIndexed(): void
     {
-        // TODO: Implement markAsIndexed() method.
+        return; // Perform some kind of action to indicate this object has been indexed
     }
 
     /**

@@ -7,6 +7,7 @@ use Solarium\Client;
 use Solarium\Core\Client\Endpoint;
 use Solarium\Plugin\BufferedAdd\BufferedAdd;
 use Tests\Mocks\EmptyConfigMock;
+use Tests\Mocks\GeneratorDocumentMocks;
 use Tests\Mocks\IndexableMock;
 use Tests\Mocks\SearchConfigMock;
 use Tests\Mocks\UnIndexableMock;
@@ -38,9 +39,37 @@ class ModelIndexerTest extends TestCase
         $buffer = $this->createMock(BufferedAdd::class);
 
         $buffer
-            ->expects($this->once())
-            ->method('addDocuments')
-            ->with($documents[0]->indexingDocuments());
+            ->expects($this->atLeast(2))
+            ->method('addDocument');
+
+        $buffer->expects($this->once())->method('flush');
+
+        // Mock the endpoint
+        $endpoint = new Endpoint();
+        $endpoint->setCore('search');
+
+        // Mock the Solr client
+        $client = $this->createMock(Client::class);
+        $client->method('getPlugin')->with('bufferedadd')->willReturnReference($buffer);
+        $client->method('getEndpoint')->willReturnReference($endpoint);
+
+        // Mock the config
+        $config_mock = $this->createMock(SolrConfigInterface::class);
+        $config_mock->method('getClient')->willReturnReference($client);
+
+        ModelIndexer::forModels($documents, $config_mock)->perform();
+    }
+
+    public function testIndexingIsSuccessfulForAGenerator()
+    {
+        $documents = [new GeneratorDocumentMocks];
+
+        // Mock the buffer
+        $buffer = $this->createMock(BufferedAdd::class);
+
+        $buffer
+            ->expects($this->atLeast(2))
+            ->method('addDocument');
 
         $buffer->expects($this->once())->method('flush');
 

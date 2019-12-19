@@ -3,8 +3,9 @@
 namespace Tests\Mocks;
 
 use Solarium\QueryType\Update\Query\Document;
+use Tubber\Indexer\Contracts\IndexableInterface;
 
-class IndexableMock implements \Tubber\Indexer\Contracts\IndexableInterface
+class IndexableMock implements IndexableInterface
 {
 
     /**
@@ -12,7 +13,7 @@ class IndexableMock implements \Tubber\Indexer\Contracts\IndexableInterface
      *
      * @return array|Document[]
      */
-    public function indexingDocuments(): array
+    public function indexingDocuments()
     {
         return [
             new Document([

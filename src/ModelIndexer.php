@@ -71,11 +71,16 @@ class ModelIndexer
         $this->buffer->setBufferSize($this->buffer_size);
 
         foreach ($this->models as $model) {
-            $this->assertDocumentsAreValid(
-                $documents = $model->indexingDocuments()
-            );
 
-            $this->buffer->addDocuments($documents);
+            $documents = $model->indexingDocuments();
+
+            foreach ($documents as $document) {
+
+                $this->assertDocumentIsValid($document);
+
+                $this->buffer->addDocument($document);
+
+            }
 
             $model->markAsIndexed();
         }
@@ -110,17 +115,15 @@ class ModelIndexer
     /**
      * Throw an exception if at least one of the provided documents isn't actually a Document
      *
-     * @param array $documents
+     * @param $document
      * @throws \InvalidArgumentException
      */
-    private function assertDocumentsAreValid(array $documents): void
+    private function assertDocumentIsValid($document): void
     {
-        foreach ($documents as $document) {
-            if (! $document instanceof Document) {
-                throw new \InvalidArgumentException(
-                    "One or more indexing documents aren't of type: Solarium\QueryType\Update\Query\Document"
-                );
-            }
+        if (! $document instanceof Document) {
+            throw new \InvalidArgumentException(
+                "One or more indexing documents aren't of type: Solarium\QueryType\Update\Query\Document"
+            );
         }
     }
 
