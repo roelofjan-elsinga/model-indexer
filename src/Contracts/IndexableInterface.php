@@ -9,9 +9,9 @@ interface IndexableInterface
     /**
      * Get an array of documents that need to be indexed for this object
      *
-     * @return array|Document[]
+     * @return array|\Generator|Document[]
      */
-    public function indexingDocuments(): array;
+    public function indexingDocuments();
 
     /**
      * Mark this object as indexed
