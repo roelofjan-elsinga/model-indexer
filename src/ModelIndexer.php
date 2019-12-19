@@ -71,15 +71,12 @@ class ModelIndexer
         $this->buffer->setBufferSize($this->buffer_size);
 
         foreach ($this->models as $model) {
-
             $documents = $model->indexingDocuments();
 
             foreach ($documents as $document) {
-
                 $this->assertDocumentIsValid($document);
 
                 $this->buffer->addDocument($document);
-
             }
 
             $model->markAsIndexed();
